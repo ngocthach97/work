@@ -1,6 +1,6 @@
-package com.example.traning.Common.Validation.AnnotationValidate;
+package com.example.traning.Common.Constraints.AnnotationValidate;
 
-import com.example.traning.Common.Validation.Validator.PhoneNumberVNValidator;
+import com.example.traning.Common.Constraints.Validator.PhoneNumberVNValidator;
 
 import javax.validation.Constraint;
 import java.lang.annotation.Documented;

@@ -1,4 +1,4 @@
-package com.example.traning.Entity;
+package com.example.traning.Model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +8,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+
+@SqlResultSetMapping(
+        name = "EmployeeResult",
+        entities = {
+                @EntityResult(
+                        entityClass = Employee.class,
+                        fields = {
+                                @FieldResult(name = "name", column = "E.NAME"),
+                                @FieldResult(name = "phone", column = " E.NAME"),
+                                @FieldResult(name = "email", column = "E.EMAIL"),
+                        }
+                )
+        }
+)
 @Entity(name = "employee")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,22 +38,23 @@ public class Employee implements Serializable {
     private String phone;
     @Column(name = "email")
     private String email;
-    @Column(name = "position")
-    private String position;
-    @ManyToOne
-    @JoinColumn(name = "departmentID", nullable = false)
-    private Department department;
+    @Column(name = "departmentID")
+    private Long departmentID;
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "managerID")
     private Employee manager;
     @OneToMany(mappedBy = "manager")
     private Set<Employee> subordinates;
+    @Column(name = "position")
+    private String position;
     @Column(name = "provinceCode")
     private String provinceCode;
     @Column(name = "districtCode")
     private String districtCode;
     @Column(name = "wardCode")
     private String wardCode;
+    @Column(name = "address")
+    private String address;
     @Column(name = "status")
-    private boolean status;
+    private Boolean status;
 }

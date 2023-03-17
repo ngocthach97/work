@@ -1,6 +1,6 @@
-package com.example.traning.Common.Validation.Validator;
+package com.example.traning.Common.Constraints.Validator;
 
-import com.example.traning.Common.Validation.AnnotationValidate.BirthDate;
+import com.example.traning.Common.Constraints.AnnotationValidate.BirthDate;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

@@ -1,4 +1,4 @@
-package com.example.traning.Entity;
+package com.example.traning.Model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

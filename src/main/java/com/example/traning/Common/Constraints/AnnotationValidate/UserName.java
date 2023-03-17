@@ -1,6 +1,6 @@
-package com.example.traning.Common.Validation.AnnotationValidate;
+package com.example.traning.Common.Constraints.AnnotationValidate;
 
-import com.example.traning.Common.Validation.Validator.BirthDateValidator;
+import com.example.traning.Common.Constraints.Validator.UserNameValidator;
 
 import javax.validation.Constraint;
 import java.lang.annotation.Documented;
@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
-@Constraint(validatedBy = BirthDateValidator.class)
+@Constraint(validatedBy = UserNameValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Documented
-public @interface BirthDate {
+public @interface UserName {
 }

@@ -1,4 +1,4 @@
-package com.example.traning.Common.Validation;
+package com.example.traning.Common.Constraints;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;

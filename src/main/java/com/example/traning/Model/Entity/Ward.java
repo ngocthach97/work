@@ -1,4 +1,4 @@
-package com.example.traning.Entity;
+package com.example.traning.Model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,14 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity(name = "province")
+@Entity(name = "ward")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Province  implements Serializable {
+public class Ward implements Serializable {
     @Id
-    @Column(name = "provinceCode")
-    private String provinceCode;
+    @Column(name = "wardCode")
+    private String wardCode;
+    @Column(name = "districtCode")
+    private String districtCode;
     @Column(name = "name")
     private String name;
     @Column(name = "type")

@@ -1,6 +1,7 @@
-package com.example.traning.Common.Validation.Validator;
+package com.example.traning.Common.Constraints.Validator;
 
-import com.example.traning.Common.Validation.AnnotationValidate.PhoneNumberVN;
+import com.example.traning.Common.Constraints.AnnotationValidate.PhoneNumberVN;
+import com.example.traning.Common.Constraints.Validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -10,11 +11,6 @@ import java.util.regex.Pattern;
 public class PhoneNumberVNValidator implements ConstraintValidator<PhoneNumberVN, String> {
     @Override
     public boolean isValid(String phoneNumber, ConstraintValidatorContext constraintValidatorContext) {
-        Pattern pattern = Pattern.compile("^(03|05|07|08|09[0-9])+([0-9]{7})$");
-        Matcher matcher = pattern.matcher(phoneNumber);
-        if (matcher.find()) {
-            return true;
-        }
-        return false;
+        return Validation.isPhoneVN(phoneNumber);
     }
 }

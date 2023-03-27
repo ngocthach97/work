@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>, EmployeeRepositoryEx {
     public List<Employee> findAllByStatusIsTrue();
+    Employee findByUsername(String username);
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String gmail);
+
 }

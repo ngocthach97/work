@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class ProductAPI {
 
     @Autowired
     ProductRepository productRepository;
-
+    @RolesAllowed({"ROLE_USER"})
     @PostMapping(value = "/create", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Boolean> createProduct(@RequestParam("product") String productJson,
                                                  @RequestParam("file") List<MultipartFile> list) {
@@ -37,9 +38,11 @@ public class ProductAPI {
         }
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
-
+//    @RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
     @PostMapping(value = "/search")
     public ResponseEntity<List> searchEmployee(@RequestBody Search search) {
+        productRepository.getProduct();
+        productRepository.getCountDistrict("01");
         List<Object> list = productRepository.searchProduct(search);
         return new ResponseEntity<List>(list, HttpStatus.OK);
     }

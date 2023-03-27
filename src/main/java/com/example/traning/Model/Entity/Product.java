@@ -13,38 +13,17 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @Entity(name = "product")
-//@SqlResultSetMapping(name = "ProductResult",
-//        classes = @ConstructorResult(targetClass = com.example.traning.Model.DTO.ProductDTO.class,
-//                columns = {
-//                        @ColumnResult(name = "name"),
-//                        @ColumnResult(name = "describe"),
-//                        @ColumnResult(name = "price", type = Float.class),
-//                        @ColumnResult(name = "discount", type = Integer.class),
-//                        @ColumnResult(name = "unit"),
-//                        @ColumnResult(name = "nameImage"),
-//                }
-//        )
-//)
-@SqlResultSetMapping(
-        name = "ProductResult",
-        entities = {
-                @EntityResult(
-                        entityClass = com.example.traning.Model.Entity.Product.class,
-                        fields = {
-                                @FieldResult(name = "name", column = "name"),
-                                @FieldResult(name = "describe", column = "describe"),
-                                @FieldResult(name = "price", column = "price"),
-                                @FieldResult(name = "discount", column = "discount"),
-                                @FieldResult(name = "unit", column = "unit")
-                        }
-                ),
-                @EntityResult(
-                        entityClass = com.example.traning.Model.Entity.Image.class,
-                        fields = {
-                                @FieldResult(name = "name", column = "nameImage"),
-                        }
-                )
-        }
+@SqlResultSetMapping(name = "ProductResult",
+        classes = @ConstructorResult(targetClass = com.example.traning.Model.DTO.ProductDTO.class,
+                columns = {
+                        @ColumnResult(name = "name"),
+                        @ColumnResult(name = "describe"),
+                        @ColumnResult(name = "price", type = Float.class),
+                        @ColumnResult(name = "discount", type = Integer.class),
+                        @ColumnResult(name = "unit"),
+                        @ColumnResult(name = "nameImage"),
+                }
+        )
 )
 public class Product implements Serializable {
     @Id

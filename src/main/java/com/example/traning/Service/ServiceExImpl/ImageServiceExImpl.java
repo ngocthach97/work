@@ -4,6 +4,8 @@ import com.example.traning.Model.Entity.Employee;
 import com.example.traning.Model.Entity.Image;
 import com.example.traning.Repository.Repository.ImageRepository;
 import com.example.traning.Service.ServiceEx.ImageServiceEx;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ImageServiceExImpl implements ImageServiceEx {
     @Value("${value.folder}")
     private String folder;
+    private static final Logger logger = LogManager.getLogger(ImageServiceExImpl.class);
 
     @Override
     public boolean saveImageToSystem(MultipartFile multipartFileList) {
@@ -35,7 +38,7 @@ public class ImageServiceExImpl implements ImageServiceEx {
             }
             return true;
         } catch (Exception e) {
-
+            logger.error(e.toString());
         }
         return false;
     }
@@ -49,7 +52,7 @@ public class ImageServiceExImpl implements ImageServiceEx {
                 return resource;
             }
         } catch (Exception e) {
-
+            logger.error(e.toString());
         }
         return null;
     }

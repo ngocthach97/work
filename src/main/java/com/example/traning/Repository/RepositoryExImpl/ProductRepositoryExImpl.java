@@ -3,11 +3,11 @@ package com.example.traning.Repository.RepositoryExImpl;
 import com.example.traning.Common.Constant;
 import com.example.traning.Common.Constraints.Validation;
 import com.example.traning.Common.Payload.Request.Search;
+import com.example.traning.Model.Entity.Product;
 import com.example.traning.Repository.RepositoryEx.ProductRepositoryEx;
+import oracle.jdbc.OracleTypes;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,5 +64,26 @@ public class ProductRepositoryExImpl implements ProductRepositoryEx {
         }
         List<Object> list = query.getResultList();
         return list;
+    }
+
+    @Override
+    public Long getCountDistrict(String districtCode) {
+        Long count = 0L;
+        StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("GET_DISTRICT");
+        storedProcedureQuery.registerStoredProcedureParameter("provinceID", String.class, ParameterMode.IN);
+        storedProcedureQuery.registerStoredProcedureParameter("countDistrict", Long.class, ParameterMode.OUT);
+        storedProcedureQuery.setParameter("provinceID", districtCode);
+        storedProcedureQuery.execute();
+        count = (Long) storedProcedureQuery.getOutputParameterValue("countDistrict");
+        return count;
+    }
+
+    @Override
+    public List<Product> getProduct() {
+        StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("GET_PRODUCT", Product.class);
+        storedProcedureQuery.registerStoredProcedureParameter("refcursor", void.class,ParameterMode.REF_CURSOR);
+        storedProcedureQuery.execute();
+        List<Product> resultList = storedProcedureQuery.getResultList();
+        return resultList;
     }
 }

@@ -3,6 +3,7 @@ package com.example.traning.Model.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,6 +27,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Component
 public class Employee implements Serializable {
     @Id
     @Column(name = "id")
@@ -34,10 +36,16 @@ public class Employee implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
     @Column(name = "phone")
     private String phone;
     @Column(name = "email")
     private String email;
+    @Column(name = "role")
+    private String role;
     @Column(name = "departmentID")
     private Long departmentID;
     @ManyToOne(cascade = {CascadeType.ALL})
